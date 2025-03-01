@@ -38,6 +38,11 @@ const Navbar = ({setShowLogin}) => {
           <li onClick={()=>setActive('Home')} className={`${active ==='Home'?"active  ":""} hover:border-gray-500 hover:border-b-3`}>Home</li>
           <li onClick={()=>setActive('Courses')} className={`${active ==='Courses'?"active ":""} hover:border-gray-500 hover:border-b-3 `}>Courses</li>
           <li onClick={()=>setActive('Quiz')} className={`${active ==='Quiz'?"active":""} hover:border-gray-500 hover:border-b-3  `}>Quiz</li>
+          <li onClick={()=>setActive('Packages')} className={`${active ==='Packages'?"active":""} hover:border-gray-500 hover:border-b-3  `}>Packages</li>
+          <li onClick={()=>setActive('Blog')} className={`${active ==='Blog'?"active":""} hover:border-gray-500 hover:border-b-3  `}>Blog</li>
+          <li onClick={()=>setActive('Groups')} className={`${active ==='Groups'?"active":""} hover:border-gray-500 hover:border-b-3  `}>Groups</li>
+          <li onClick={()=>setActive('More')} className={`${active ==='More'?"active":""} hover:border-gray-500 hover:border-b-3  `}>More</li>
+          <li onClick={()=>setActive('Contact Us')} className={`${active ==='Contact Us'?"active":""} hover:border-gray-500 hover:border-b-3  `}>Contact Us</li>
         </ul>
       </div>
       <div className="space-x-4 flex">
