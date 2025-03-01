@@ -1,9 +1,35 @@
-import { useState } from "react";
-import { LogIn, MailIcon } from "lucide-react";
+import { useContext, useEffect, useState } from "react";
+import { LogIn, LogOut, MailIcon } from "lucide-react";
+import { Button } from "./ui/button";
+import {redirect, useNavigate} from 'react-router-dom'
+import axios from "axios";
+import { toast } from "react-toastify";
+import { StoreContext } from "@/context/StoreContext";
 
 
-const Navbar = () => {
+const Navbar = ({setShowLogin}) => {
   const [active, setActive] = useState('Home');
+  const {setToken,token} = useContext(StoreContext);
+  // const navigate = useNavigate();
+
+  useEffect(() => {
+    const savedToken = localStorage.getItem("token");
+    if (savedToken) {
+      setToken(savedToken);
+    }
+  }, [setToken]);
+  const logout = async()=>{
+    
+    localStorage.removeItem("token");
+    setToken("");
+    redirect('/');
+  }
+  
+  
+
+  
+  
+  
   return (
     <nav className="flex justify-between items-center py-2 px-10  max-h-[200px] bg-fixed   bg-background/60 border-b">
       <div className="flex items-center  gap-20">
@@ -15,14 +41,14 @@ const Navbar = () => {
         </ul>
       </div>
       <div className="space-x-4 flex">
-        <button className="flex text-sm font-medium gap-3 px-4 py-2 bg-gray-800 text-white hover:bg-gray-600 rounded-md" >
-          <MailIcon className="size-5" />
-          Register
-        </button>
-        <button className="flex text-sm font-medium gap-3 px-3 py-2 bg-blue-600 text-white hover:bg-blue-800 rounded-md">
+        
+        {!token?<Button onClick={()=>setShowLogin(true)} className=" bg-blue-600 text-white hover:bg-blue-800 ">
           <LogIn className="size-5" />
-          Login
-        </button>
+          Sign In
+        </Button>:<Button onClick={logout} variant="destructive" >
+          <LogOut className="size-5" />
+          Logout
+        </Button>}
       </div>
     </nav>
   );

@@ -1,16 +1,24 @@
-import React from 'react'
-import Navbar from './components/Navbar'
-import Home from './pages/Home/Home'
-import Footer from './components/Footer'
+import React, { useState } from "react";
+import Navbar from "./components/Navbar";
+import Home from "./pages/Home/Home";
+import Footer from "./components/Footer";
+import Login from "./components/Login";
+import StoreProvider from "./context/StoreContext";
 
 const App = () => {
-  return (
-    <div className=' '>
-      <Navbar/>
-      <Home/>
-      <Footer/>
-    </div>
-  )
-}
+  const [showLogin, setShowLogin] = useState(false);
 
-export default App
+  return (
+    <>
+      <StoreProvider>
+        {showLogin ? <Login setShowLogin={setShowLogin} /> : <></>}
+
+        <Navbar setShowLogin={setShowLogin} />
+        <Home />
+        <Footer />
+      </StoreProvider>
+    </>
+  );
+};
+
+export default App;
